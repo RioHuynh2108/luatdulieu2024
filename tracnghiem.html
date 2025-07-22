@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trắc nghiệm khách quan</title>
+  <style>
+    body {
+	 font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+    }
+
+    h2 {
+      text-align: center;
+      color: #1a73e8;
+      margin-bottom: 20px;
+    }
+
+    .quiz-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .question-box {
+      max-height: 450px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .question {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .question h3 {
+      margin-top: 0;
+      color: #0d47a1;
+    }
+
+    label {
+      display: block;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    label:hover {
+      background-color: #e3f2fd;
+    }
+
+    input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    button {
+      margin: 20px auto 0;
+      display: block;
+      background: #1a73e8;
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0d47a1;
+    }
+
+    .result {
+      margin-top: 20px;
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      color: #856404;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .wrong {
+      color: #c62828;
+      font-weight: bold;
+    }
+
+    .correct-answer {
+      color: #2e7d32;
+    }
+
+    /* Scrollbar styling */
+    .question-box::-webkit-scrollbar {
+      width: 8px;
+    }
+.wrapper {
+  position: relative;
+  z-index: 1;
+  padding: 30px;
+}
+
+    .question-box::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 4px;
+    }
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    #video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 115%;
+      height: 135%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+   /* Gộp header và marquee thành một khung duy nhất */
+.header-box {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 10px auto;
+  max-width: 100%;
+}
+
+/* Tiêu đề chính */
+.header-box h1 {
+  font-size: 1.5em;
+  color: #FFD700;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Dòng chữ chạy bên trong khung */
+.marquee-text {
+  white-space: nowrap;
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+  font-size: 1.1em;
+  color: #FFD700;
+}
+
+/* Hiệu ứng chữ chạy */
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Bố cục trang gồm taskbar và nội dung chính */
+.container {
+  display: flex;
+}
+
+/* Taskbar bên trái */
+.taskbar {
+  width: 150px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Nút trong taskbar */
+.taskbar button {
+  background-color: #222;
+  color: white;
+  border: 2px solid #FFD700;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.95em;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.taskbar button:hover {
+  background-color: #FFD700;
+  color: black;
+  transform: scale(1.03);
+}
+
+/* Nội dung chính */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Menu chính giữa (nếu có) */
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 40px;
+}
+
+.menu button {
+  background-color: #333;
+  color: white;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.menu button:hover {
+  background-color: #4CAF50;
+  transform: scale(1.05);
+}
+
+/* Các khối nội dung */
+.content {
+  max-width: 900px;
+  margin: 20px auto;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+}
+
+    .content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+ <!-- Nhạc nền ẩn -->
+  <audio id="bg-music" loop>
+    <source src="nhacnen.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Nút bật nhạc ở góc phải trên cùng -->
+  <div style="position: fixed; top: 10px; right: 20px; z-index: 10000;">
+    <button onclick="playMusic()" style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
+      🎵 Nhạc nền
+    </button>
+  </div>
+  <video id="video-background" autoplay loop muted>
+    <source src="nen7.mp4" type="video/mp4">
+  </video>
+
+  <div class="header-box">
+  <h1>🛡️ TRẮC NGHIỆM KHÁCH QUAN</h1>
+  <div class="marquee-text">
+    📢 Bạn đang theo dõi phần mềm trình chiếu tương tác Bài dự thi "Tìm hiểu Luật dữ liệu trong Công an nhân dân" - Vui lòng nhấp chọn vào nội dung cần xem! 📢
+  </div>
+</div>
+
+  <div class="container">
+    <!-- Taskbar bên trái -->
+    <div class="taskbar">
+      <button onclick="window.location.href='index.html'">🏠 Trang chủ</button>
+      <button onclick="window.location.href='gioithieuchung.html'">📄 Thuyết minh bài dự thi</button>
+      <button onclick="window.location.href='traloicauhoi.html'">📌 Trả lời câu hỏi bài dự thi</button>
+      <button onclick="window.location.href='vanbanluat.html'">📚 Các văn bản Luật liên quan</button>
+      <button onclick="showContent('tinhhuong')">🎥 Tình huống thực tiễn</button>
+      <button onclick="window.location.href='tracnghiem.html'">🛡️ Trắc nghiệm khách quan</button>
+      <button onclick="showContent('maQR')">🧠 Mã QR tài liệu</button>
+      <button onclick="showContent('khuyennghi')">📎 Khuyến nghị</button>
+    </div>
+<div class="wrapper">
+    <!-- Nội dung chính -->
+	<h2>Trắc nghiệm Luật Dữ liệu (Hiệu lực từ 1/7/2025)</h2>
+
+  <div class="quiz-container">
+    <form id="quizForm">
+      <div class="question-box">
+
+        <!-- Các câu hỏi (giữ nguyên nội dung bạn đã có) -->
+        <div class="question" id="q1">
+          <h3>1. Luật Dữ liệu được Quốc hội thông qua vào thời điểm nào?</h3>
+          <label><input type="radio" name="q1" value="a"> A. 2023</label>
+          <label><input type="radio" name="q1" value="b"> B. 2024</label>
+          <label><input type="radio" name="q1" value="c"> C. 2025</label>
+          <label><input type="radio" name="q1" value="d"> D. 2026</label>
+        </div>
+
+        <div class="question" id="q2">
+          <h3>2. Luật Dữ liệu có hiệu lực từ ngày nào?</h3>
+          <label><input type="radio" name="q2" value="a"> A. 1/1/2025</label>
+          <label><input type="radio" name="q2" value="b"> B. 1/7/2025</label>
+          <label><input type="radio" name="q2" value="c"> C. 31/12/2025</label>
+          <label><input type="radio" name="q2" value="d"> D. 1/7/2024</label>
+        </div>
+
+        <div class="question" id="q3">
+          <h3>3. Dữ liệu cá nhân nào sau đây được coi là dữ liệu nhạy cảm?</h3>
+          <label><input type="radio" name="q3" value="a"> A. Số điện thoại</label>
+          <label><input type="radio" name="q3" value="b"> B. CMND/CCCD</label>
+          <label><input type="radio" name="q3" value="c"> C. Thông tin về sức khỏe</label>
+          <label><input type="radio" name="q3" value="d"> D. Email cá nhân</label>
+        </div>
+
+        <div class="question" id="q4">
+          <h3>4. Tổ chức xử lý dữ liệu trái phép sẽ bị xử phạt như thế nào?</h3>
+          <label><input type="radio" name="q4" value="a"> A. Phê bình nội bộ</label>
+          <label><input type="radio" name="q4" value="b"> B. Chỉ bị cảnh cáo</label>
+          <label><input type="radio" name="q4" value="c"> C. Có thể bị phạt tiền hoặc truy cứu trách nhiệm hình sự</label>
+          <label><input type="radio" name="q4" value="d"> D. Không bị xử phạt</label>
+        </div>
+
+        <div class="question" id="q5">
+          <h3>5. Ai có quyền yêu cầu chỉnh sửa hoặc xóa dữ liệu cá nhân của mình?</h3>
+          <label><input type="radio" name="q5" value="a"> A. Bất kỳ ai</label>
+          <label><input type="radio" name="q5" value="b"> B. Cơ quan nhà nước</label>
+          <label><input type="radio" name="q5" value="c"> C. Chủ thể dữ liệu</label>
+          <label><input type="radio" name="q5" value="d"> D. Quản trị hệ thống</label>
+        </div>
+
+        <div class="question" id="q6">
+          <h3>6. Luật Dữ liệu áp dụng cho?</h3>
+          <label><input type="radio" name="q6" value="a"> A. Chỉ công dân Việt Nam</label>
+          <label><input type="radio" name="q6" value="b"> B. Mọi tổ chức, cá nhân có hoạt động xử lý dữ liệu tại Việt Nam</label>
+          <label><input type="radio" name="q6" value="c"> C. Chỉ cơ quan nhà nước</label>
+          <label><input type="radio" name="q6" value="d"> D. Người nước ngoài</label>
+        </div>
+
+        <div class="question" id="q7">
+          <h3>7. Trước khi thu thập dữ liệu cá nhân, tổ chức cần làm gì?</h3>
+          <label><input type="radio" name="q7" value="a"> A. Gửi thông báo lên bộ</label>
+          <label><input type="radio" name="q7" value="b"> B. Xin ý kiến chuyên gia</label>
+          <label><input type="radio" name="q7" value="c"> C. Có sự đồng ý của chủ thể dữ liệu</label>
+          <label><input type="radio" name="q7" value="d"> D. Không cần làm gì</label>
+        </div>
+
+        <div class="question" id="q8">
+          <h3>8. Dữ liệu cần được bảo mật bằng?</h3>
+          <label><input type="radio" name="q8" value="a"> A. Văn bản</label>
+          <label><input type="radio" name="q8" value="b"> B. Mã hóa, kiểm soát truy cập, lưu trữ an toàn</label>
+          <label><input type="radio" name="q8" value="c"> C. Kho lưu trữ giấy</label>
+          <label><input type="radio" name="q8" value="d"> D. Không cần bảo mật</label>
+        </div>
+
+        <div class="question" id="q9">
+          <h3>9. Dữ liệu nào KHÔNG được phép chia sẻ nếu không có sự đồng ý?</h3>
+          <label><input type="radio" name="q9" value="a"> A. Họ tên</label>
+          <label><input type="radio" name="q9" value="b"> B. Tình trạng hôn nhân</label>
+          <label><input type="radio" name="q9" value="c"> C. Số CMND/CCCD</label>
+          <label><input type="radio" name="q9" value="d"> D. Địa chỉ công ty</label>
+        </div>
+
+        <div class="question" id="q10">
+          <h3>10. Mục tiêu chính của Luật Dữ liệu là?</h3>
+          <label><input type="radio" name="q10" value="a"> A. Bán dữ liệu cá nhân</label>
+          <label><input type="radio" name="q10" value="b"> B. Quản lý nhà nước về công nghệ</label>
+          <label><input type="radio" name="q10" value="c"> C. Bảo vệ quyền riêng tư và an toàn dữ liệu</label>
+          <label><input type="radio" name="q10" value="d"> D. Giao dịch dữ liệu dễ dàng hơn</label>
+        </div>
+      </div>
+
+      <button type="button" onclick="submitQuiz()">📤 Nộp bài</button>
+    </form>
+
+    <div id="result" class="result" style="display:none;"></div>
+  </div>
+
+  <script>
+    function submitQuiz() {
+      const answers = {
+        q1: 'b', q2: 'b', q3: 'c', q4: 'c', q5: 'c',
+        q6: 'b', q7: 'c', q8: 'b', q9: 'c', q10: 'c'
+      };
+      let correct = 0, feedback = "";
+      for (let q in answers) {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected) {
+          if (selected.value === answers[q]) {
+            correct++;
+          } else {
+            feedback += `<p class='wrong'>❌ Câu ${q.slice(1)} sai. Đáp án đúng: <span class='correct-answer'>${answers[q].toUpperCase()}</span></p>`;
+          }
+        } else {
+          feedback += `<p class='wrong'>⚠️ Câu ${q.slice(1)} chưa trả lời.</p>`;
+        }
+      }
+      const resultBox = document.getElementById("result");
+      resultBox.style.display = "block";
+      resultBox.innerHTML = `<h3>Kết quả:</h3><p>✅ Số câu đúng: <strong>${correct}</strong> / 10</p>${feedback}`;
+    }
+  </script>
+</div>
+</body>
+</html>
+   <script>
+  function playMusic() {
+    var audio = document.getElementById("bg-music");
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }
+</script>
+
+</body>
+</html>
