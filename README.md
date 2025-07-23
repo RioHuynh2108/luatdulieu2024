@@ -6,112 +6,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: none;
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: white;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .menu {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-    .menu button {
-      font-size: 1.2em;
-      padding: 20px;
-      background-color: #222;
-      color: #fff;
-      border: 2px solid #4CAF50;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.2s, background-color 0.3s;
-    }
-    .menu button:hover {
-      background-color: #4CAF50;
-      transform: scale(1.1);
-    }
-    .content {
-      display: none;
-      max-width: 800px;
-      margin-top: 30px;
-      padding: 20px;
-      background-color: #222;
-      border-radius: 10px;
-    }
-    .content.active {
-      display: block;
-    }
-    .animated-title h1, .animated-title h2 {
-      animation: fadeInUp 1s ease-out;
-      animation-fill-mode: both;
-    }
-    .animated-title h1 {
-      animation-delay: 0s;
-    }
-    .animated-title h2 {
-      animation-delay: 0.3s;
-    }
-    .glow {
-      animation: glowAnim 2s infinite alternate;
-    }
-    @keyframes glowAnim {
-      0% {
-        text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
-      }
-      100% {
-        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
-      }
-    }
-    @keyframes marquee {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-@media screen and (max-width: 768px) {
-    .animated-title {
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      text-align: center;
-    }
+  font-family: Arial, sans-serif;
+  background: none;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .animated-title img {
-      height: 80px; /* thu nhỏ logo trên mobile */
-    }
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
 
-    .animated-title h1, .animated-title h2 {
-      font-size: 1.2em;
-    }
+.menu button {
+  font-size: 1.2em;
+  padding: 20px;
+  background-color: #222;
+  color: #fff;
+  border: 2px solid #4CAF50;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+}
 
-    .menu {
-      flex-direction: column;
-      align-items: center;
-    }
+.menu button:hover {
+  background-color: #4CAF50;
+  transform: scale(1.1);
+}
 
-    .menu button {
-      width: 90%;
-    }
+.content {
+  display: none;
+  max-width: 800px;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #222;
+  border-radius: 10px;
+}
+
+.content.active {
+  display: block;
+}
+
+.animated-title h1, .animated-title h2 {
+  animation: fadeInUp 1s ease-out;
+  animation-fill-mode: both;
+}
+
+.animated-title h1 {
+  animation-delay: 0s;
+}
+
+.animated-title h2 {
+  animation-delay: 0.3s;
+}
+
+.glow {
+  animation: glowAnim 2s infinite alternate;
+}
+
+@keyframes glowAnim {
+  0% {
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
   }
-  </style>
-<style>
-    #video-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-</style>
+  100% {
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Giao diện trên thiết bị có chiều rộng nhỏ hơn hoặc bằng 768px */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .animated-title {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .animated-title img {
+    position: static !important;
+    display: block;
+    margin: 0 auto 20px;
+    height: 100px !important;
+  }
+
+  .animated-title h1,
+  .animated-title h2 {
+    font-size: 1.2em;
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .menu button {
+    width: 100%;
+    font-size: 1em;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  .content {
+    padding: 10px;
+    width: 100%;
+  }
+
+  video {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+#video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
 <body>
  
   <video id="video-background" autoplay loop muted>
