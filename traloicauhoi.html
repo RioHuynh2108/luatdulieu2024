@@ -173,23 +173,27 @@
       <button onclick="showContent('khuyennghi')">📎 Khuyến nghị</button>
     </div>
 
-    <!-- Nội dung chính -->
-    <div class="main-content">
-      <div class="menu">
-        <button onclick="showContent('gioithieu1')">1️⃣ <strong style="color: #FFD700;">Quyển 1</strong></button>
-        <button onclick="showContent('gioithieu2')">2️⃣ <strong style="color: #FFD700;">Quyển 2</strong></button>
-        <button onclick="showContent('gioithieu3')">3️⃣ <strong style="color: #FFD700;">Quyển 3</strong></button>
-	<button onclick="showContent('gioithieu4')">3️⃣ <strong style="color: #FFD700;">Quyển 4</strong></button>
-        <button onclick="showContent('gioithieu5')">3️⃣ <strong style="color: #FFD700;">Quyển 5</strong></button>
+ <!-- Nội dung chính -->
+<div class="main-content">
+  <div class="menu">
+    <button onclick="moQuyen1()">1️⃣ <strong style="color: #FFD700;">Quyển 1</strong></button>
+    <button onclick="showContent('gioithieu2')">2️⃣ <strong style="color: #FFD700;">Quyển 2</strong></button>
+    <button onclick="showContent('gioithieu3')">3️⃣ <strong style="color: #FFD700;">Quyển 3</strong></button>
+    <button onclick="showContent('gioithieu4')">4️⃣ <strong style="color: #FFD700;">Quyển 4</strong></button>
+    <button onclick="showContent('gioithieu5')">5️⃣ <strong style="color: #FFD700;">Quyển 5</strong></button>
+  </div>
 
-      </div>
+  <!-- Các phần nội dung khác giữ nguyên -->
+  <div id="gioithieu1" class="content"></div>
+</div>
 
-     <div id="gioithieu1" class="content">
- <!-- Trình xem Word -->
-  <iframe 
-    src="slide1.pdf"
-    width="100%" height="600px" frameborder="0">
-  </iframe>
+<script>
+  function moQuyen1() {
+    window.open('https://drive.google.com/file/d/1Xxh3G-BFcPzr-l15TbTPEsN8R4y0GxcC/view?usp=drive_link', '_blank');
+  }
+</script>
+
+
 
      <div id="gioithieu2" class="content">
   <h2 style="color: #FFD700;">2. Ý TƯỞNG THIẾT KẾ PHẦN MỀM</h2>
