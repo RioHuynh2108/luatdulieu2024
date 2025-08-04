@@ -21,18 +21,30 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-
-    #video-background {
+/* Mặc định dùng video */
+#video-background {
   position: fixed;
   top: 0;
   left: 0;
   min-width: 100vw;
   min-height: 100vh;
-  width: auto;
-  height: auto;
   object-fit: cover;
   z-index: -1;
 }
+
+/* Trên thiết bị di động: ẩn video và hiển thị background ảnh */
+@media screen and (max-width: 768px) {
+  #video-background {
+    display: none;
+  }
+
+  body {
+    background: url('anhnen4.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+}
+
+  
 
     .menu {
       display: flex;
