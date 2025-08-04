@@ -5,44 +5,21 @@
   <title>LawTech Showcase</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: none;
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: white;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-/* Mặc định dùng video */
-#video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100vw;
+   body {
+  font-family: Arial, sans-serif;
+  background: url('anhnen4.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
-  object-fit: cover;
-  z-index: -1;
+  overflow-x: hidden;
 }
 
-/* Trên thiết bị di động: ẩn video và hiển thị background ảnh */
-@media screen and (max-width: 768px) {
-  #video-background {
-    display: none;
-  }
 
-  body {
-    background: url('anhnen4.jpg') no-repeat center center fixed;
-    background-size: cover;
-  }
-}
 
   
 
@@ -177,9 +154,7 @@
 
 <body>
 
-  <video id="video-background" autoplay loop muted>
-    <source src="videonen2.mp4" type="video/mp4">
-  </video>
+ 
 
   <div class="animated-title" style="background-color: rgba(0,0,0,0.6); padding: 30px 20px; margin: 30px auto; border-radius: 15px; max-width: 900px; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
     <img src="logobca.png" alt="Logo Bộ Công an" style="height: 150px;">
