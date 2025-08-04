@@ -18,12 +18,7 @@
   min-height: 100vh;
   overflow-x: hidden;
 }
-
-
-
-  
-
-    .menu {
+.menu {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -144,17 +139,13 @@
         padding: 15px;
       }
 
-      video {
-        width: 100% !important;
-        height: auto !important;
-      }
+   
     }
   </style>
 </head>
 
 <body>
 
- 
 
   <div class="animated-title" style="background-color: rgba(0,0,0,0.6); padding: 30px 20px; margin: 30px auto; border-radius: 15px; max-width: 900px; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
     <img src="logobca.png" alt="Logo Bộ Công an" style="height: 150px;">
