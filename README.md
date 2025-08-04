@@ -5,20 +5,23 @@
   <title>LawTech Showcase</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-   body {
-  font-family: Arial, sans-serif;
-  background: url('anhnen4.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-.menu {
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('anhnen4.png'); /* Đặt tên file ảnh nền ở đây */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .menu {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -108,11 +111,6 @@
       }
     }
 
-    @keyframes marquee {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
     @media screen and (max-width: 768px) {
       .menu {
         flex-direction: column;
@@ -138,14 +136,11 @@
         width: 100%;
         padding: 15px;
       }
-
-   
     }
   </style>
 </head>
 
 <body>
-
 
   <div class="animated-title" style="background-color: rgba(0,0,0,0.6); padding: 30px 20px; margin: 30px auto; border-radius: 15px; max-width: 900px; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
     <img src="logobca.png" alt="Logo Bộ Công an" style="height: 150px;">
@@ -155,9 +150,10 @@
   </div>
 
   <div style="margin-bottom: 20px; width: 100%; overflow: hidden; background: rgba(0,0,0,0.6); padding: 10px 0;">
-    <div class="marquee-text" style="display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; font-size: 1.1em; color: #FFD700;">
-      📢 Luật dữ liệu trong thời kỳ chuyển đổi số quốc gia - Bước đột phá trong Kỷ nguyên mới - Kỷ nguyên vươn mình của Dân tộc 📢
-    </div>
+  <marquee behavior="scroll" direction="left" scrollamount="6" style="color: yellow; font-size: 1.2em; background-color: rgba(0,0,0,0.5); padding: 10px 0;">
+  📢 Luật dữ liệu trong thời kỳ chuyển đổi số quốc gia - Bước đột phá trong Kỷ nguyên mới - Kỷ nguyên vươn mình của Dân tộc 📢
+</marquee>
+
   </div>
 
   <div class="info-box" style="background-color: rgba(0,0,0,0.6); padding: 20px; margin: 20px auto 10px auto; border-radius: 10px; text-align: center; max-width: 1000px;">
