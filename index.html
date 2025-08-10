@@ -143,29 +143,7 @@
 <!-- Nút bật/tắt nhạc nền -->
 <div style="position: fixed; top: 20px; right: 20px; z-index: 10000;">
   <button id="music-btn" onclick="toggleMusic()" 
-          style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
-    🎵 Bật nhạc nền
-  </button>
-</div>
-
-<script>
-function toggleMusic() {
-  const music = document.getElementById("bg-music");
-  const btn = document.getElementById("music-btn");
-
-  if (music.paused) {
-    music.play().catch(err => console.log("Không thể phát nhạc:", err));
-    btn.textContent = "🔇 Tắt nhạc nền";
-  } else {
-    music.pause();
-    btn.textContent = "🎵 Bật nhạc nền";
-  }
-}
-</script>
-
-  <!-- Video nền -->
-  <video id="video-background" autoplay loop muted>
-    <source src="videonen4.mp4" type="video/mp4">
+          style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursvideonen5.mp4" type="video/mp4">
   </video>
 
   <!-- Nội dung đè lên -->
@@ -207,6 +185,7 @@ function toggleMusic() {
 
 </body>
 </html>
+
 
 
 
