@@ -1,410 +1,197 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <title>LawTech Showcase</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thuyết minh bài dự thi</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #fff;
       margin: 0;
       padding: 0;
+      color: white;
+      overflow-x: hidden;
+      background: black;
     }
 
+    /* Video nền toàn màn hình */
     #video-background {
       position: fixed;
       top: 0;
       left: 0;
-      width: 115%;
-      height: 135%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       z-index: -1;
     }
 
-   /* Gộp header và marquee thành một khung duy nhất */
-.header-box {
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 10px 15px;
-  text-align: center;
-  border-radius: 10px;
-  margin: 10px auto;
-  max-width: 100%;
-}
-
-/* Tiêu đề chính */
-.header-box h1 {
-  font-size: 1.5em;
-  color: #FFD700;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* Dòng chữ chạy bên trong khung */
-.marquee-text {
-  white-space: nowrap;
-  display: inline-block;
-  animation: marquee 15s linear infinite;
-  font-size: 1.1em;
-  color: #FFD700;
-}
-
-/* Hiệu ứng chữ chạy */
-@keyframes marquee {
-  0%   { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
-
-/* Bố cục trang gồm taskbar và nội dung chính */
-.container {
-  display: flex;
-}
-
-/* Taskbar bên trái */
-.taskbar {
-  width: 150px;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Nút trong taskbar */
-.taskbar button {
-  background-color: #222;
-  color: white;
-  border: 2px solid #FFD700;
-  border-radius: 6px;
-  padding: 8px 10px;
-  font-size: 0.95em;
-  cursor: pointer;
-  text-align: left;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.taskbar button:hover {
-  background-color: #FFD700;
-  color: black;
-  transform: scale(1.03);
-}
-
-/* Nội dung chính */
-.main-content {
-  flex: 1;
-  padding: 20px;
-}
-
-/* Menu chính giữa (nếu có) */
-.menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 40px;
-}
-
-.menu button {
-  background-color: #333;
-  color: white;
-  border: 2px solid #4CAF50;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.menu button:hover {
-  background-color: #4CAF50;
-  transform: scale(1.05);
-}
-
-/* Các khối nội dung */
-.content {
-  max-width: 900px;
-  margin: 20px auto;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 20px;
-  border-radius: 10px;
-  display: none;
-}
-#yTuongText,
-#mucdichText,
-#thongdiepText,
-#dinhhuongText {
-  display: none;
-}
-
-    .content.active {
-      display: block;
+    /* Nội dung đè lên video */
+    .overlay-content {
+      position: relative;
+      z-index: 1;
+      padding: 15px;
     }
-	  /* Reset để tránh tràn lề trên mobile */
-* {
-  box-sizing: border-box;
-}
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
+    /* Tiêu đề động */
+    .animated-title {
+      text-align: center;
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 15px;
+      max-width: 900px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
 
-/* Chỉnh giao diện mobile cho toàn bộ web */
-@media screen and (max-width: 768px) {
-  
-  /* Tiêu đề */
-  .animated-title {
-    padding: 10px;
-    text-align: center;
-  }
+    .animated-title h1, .animated-title h2 {
+      color: #FFD700;
+      margin: 10px 0;
+      animation: fadeInUp 1s ease-out both;
+    }
 
-  .animated-title h1 {
-    font-size: 1.2em;
-    line-height: 1.3em;
-  }
+    .animated-title img {
+      max-width: 150px;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px auto;
+    }
 
-  .animated-title h2 {
-    font-size: 1em;
-    line-height: 1.2em;
-  }
+    .glow {
+      animation: glowAnim 2s infinite alternate;
+    }
 
-  .animated-title img {
-    max-width: 80px;
-    height: auto;
-  }
+    @keyframes glowAnim {
+      0% { text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700; }
+      100% { text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700; }
+    }
 
-  /* QR Section */
-  .qr-section {
-    transform: none; /* Bỏ dịch sang phải */
-    margin-top: 10px;
-    padding: 0 10px;
-  }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-  .qr-section img {
-    max-width: 150px;
-    height: auto;
-  }
+    /* Dòng chữ chạy */
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
 
-  .qr-section h2,
-  .qr-section h3 {
-    font-size: 1em;
-    margin-bottom: 10px;
-  }
+    /* Khối thông tin */
+    .info-box {
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 1000px;
+    }
 
-  /* Box thông tin */
-  .info-box {
-    width: 100%;
-    padding: 10px;
-    font-size: 0.95em;
-    margin: 8px 0;
-  }
+    /* Menu */
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px auto;
+      max-width: 500px;
+    }
 
-  /* Menu */
-  .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    padding: 0 10px;
-  }
+    .menu button {
+      flex: 1 1 calc(50% - 15px);
+      min-width: 140px;
+      font-size: 1em;
+      padding: 12px;
+      background-color: #222;
+      color: #fff;
+      border: 2px solid #4CAF50;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
 
-  .menu button {
-    width: 100%;
-    padding: 12px;
-    font-size: 0.95em;
-    border-radius: 8px;
-  }
+    .menu button:hover {
+      background-color: #4CAF50;
+      transform: scale(1.05);
+    }
 
-  /* Chạy chữ */
-  .marquee-text {
-    font-size: 0.9em;
-    padding: 5px 0;
-  }
-}
-
-/* Dưới 480px (màn hình rất nhỏ) */
-@media screen and (max-width: 480px) {
-  .animated-title h1 {
-    font-size: 1em;
-  }
-  .animated-title h2 {
-    font-size: 0.9em;
-  }
-  .qr-section img {
-    max-width: 130px;
-  }
-  .menu button {
-    font-size: 0.9em;
-    padding: 10px;
-  }
-}
+    /* Responsive cho mobile */
+    @media screen and (max-width: 768px) {
+      .animated-title img { max-width: 100px; }
+      .animated-title h1 { font-size: 1.2em; }
+      .animated-title h2 { font-size: 1em; }
+      .menu { flex-direction: column; max-width: 90%; }
+      .menu button { flex: 1 1 100%; font-size: 0.95em; }
+      .info-box { font-size: 0.9em; padding: 15px; }
+    }
   </style>
 </head>
 <body>
- <!-- Nhạc nền ẩn -->
-  <audio id="bg-music" loop>
-    <source src="nhacnen.mp3" type="audio/mp3">
-  </audio>
 
-  <!-- Nút bật nhạc ở góc phải trên cùng -->
-  <div style="position: fixed; top: 10px; right: 20px; z-index: 10000;">
-    <button onclick="playMusic()" style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
-      🎵 Nhạc nền
-    </button>
-  </div>
-  <video id="video-background" autoplay loop muted>
-    <source src="videonen3.mp4" type="video/mp4">
-  </video>
+<!-- Video nền -->
+<video id="video-background" autoplay loop muted playsinline>
+  <source src="videonen5.mp4" type="video/mp4">
+</video>
 
-  <div class="header-box">
-  <h1>📄 THUYẾT MINH BÀI DỰ THI</h1>
-  <div class="marquee-text">
-    📢 Bạn đang theo dõi phần mềm trình chiếu tương tác Bài dự thi "Tìm hiểu Luật dữ liệu trong Công an nhân dân" - Vui lòng nhấp chọn vào nội dung cần xem! 📢
-  </div>
+<!-- Nút bật/tắt nhạc -->
+<div style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+  <button id="music-btn" onclick="toggleMusic()" 
+          style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px;">
+    🎵 Bật/Tắt nhạc
+  </button>
 </div>
 
-  <div class="container">
-    <!-- Taskbar bên trái -->
-    <div class="taskbar">
-         <button onclick="window.location.href='index.html'">🏠 Trang chủ</button>
-      <button onclick="window.location.href='gioithieuchung.html'">📄 Thuyết minh bài dự thi</button>
-      <button onclick="window.location.href='traloicauhoi.html'">📌 Trả lời câu hỏi bài dự thi</button>
-      <button onclick="window.location.href='vanbanluat.html'">📚 Các văn bản Luật liên quan</button>
-      <button onclick="window.location.href='hinhanh.html'">🎥 Hình ảnh tuyên truyền</button>
-      <button onclick="window.location.href='tracnghiem.html'">🛡️ Trắc nghiệm khách quan</button>
-      <button onclick="window.location.href='maqr.html'">🧠 Mã QR tài liệu</button>
-      <button onclick="window.location.href='khuyennghi.html'">📎 Khuyến nghị</button>
+<!-- Nhạc nền -->
+<audio id="bg-music" loop>
+  <source src="nhacnen.mp3" type="audio/mp3">
+</audio>
+
+<!-- Nội dung -->
+<div class="overlay-content">
+  <!-- Tiêu đề -->
+  <div class="animated-title">
+    <img src="logobca.png" alt="Logo Bộ Công an">
+    <h1 class="glow">PHẦN MỀM TRÌNH CHIẾU TƯƠNG TÁC</h1>
+    <h1 class="glow">BÀI DỰ THI</h1>
+    <h2>"TÌM HIỂU LUẬT DỮ LIỆU TRONG CÔNG AN NHÂN DÂN"</h2>
+  </div>
+
+  <!-- Dòng chữ chạy -->
+  <div style="margin-bottom: 20px; width: 100%; overflow: hidden; background: rgba(0,0,0,0.6); padding: 10px 0;">
+    <div style="display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; font-size: 1.1em; color: #FFD700;">
+      📢 Luật dữ liệu trong thời kỳ chuyển đổi số quốc gia - Bước đột phá trong Kỷ nguyên mới - Kỷ nguyên vươn mình của Dân tộc 📢
     </div>
+  </div>
 
-    <!-- Nội dung chính -->
-    <div class="main-content">
-      <div class="menu">
-        <button onclick="showContent('gioithieu1')">1️⃣ <strong style="color: #FFD700;">Giới thiệu phần mềm và Nhóm tác giả</strong></button>
-        <button onclick="showContent('gioithieu2')">2️⃣ <strong style="color: #FFD700;">Ý tưởng thiết Bài dự thi</strong></button>
-        <button onclick="showContent('gioithieu3')">3️⃣ <strong style="color: #FFD700;">Mục tiêu & Định hướng tham gia cuộc thi</strong></button>
-      </div>
+  <!-- Thông tin nhóm -->
+  <div class="info-box">
+    <p><span style="color: #FFD700;">Nhóm Tác giả:</span> <strong style="color: #FFD700;">CHIẾN BINH VIỄN THÔNG</strong></p>
+    <p><span style="color: #FFD700;">Thành viên:</span> <strong style="color: #FFD700;">Thiếu tá Mai Hồ Trung Trinh - Thiếu úy Huỳnh Văn Tài</strong></p>
+    <p><span style="color: #FFD700;">Đơn vị:</span> <strong style="color: #FFD700;">Phòng Thông tin liên lạc miền Nam - Cục H04 - Bộ Công an</strong></p>
+  </div>
 
-<div id="gioithieu1" class="content">
-  <h2 style="color: #FFD700;">1. GIỚI THIỆU PHẦN MỀM & NHÓM TÁC GIẢ</h2>
-  <video width="840" height="460" controls>
-    <source src="gioithieutacgia.mp4" type="video/mp4">
-  </video>
+  <!-- Menu -->
+  <div class="menu">
+    <button onclick="window.location.href='index.html'">🏠 Trang chủ</button>
+    <button onclick="window.location.href='gioithieuchung.html'">📄 Thuyết minh</button>
+    <button onclick="window.location.href='traloicauhoi.html'">📌 Câu hỏi</button>
+    <button onclick="window.location.href='vanbanluat.html'">📚 Văn bản Luật</button>
+    <button onclick="window.location.href='hinhanh.html'">🎥 Hình ảnh</button>
+    <button onclick="window.location.href='tracnghiem.html'">🛡️ Trắc nghiệm</button>
+    <button onclick="window.location.href='maqr.html'">🧠 Mã QR</button>
+    <button onclick="window.location.href='khuyennghi.html'">📎 Khuyến nghị</button>
+  </div>
 </div>
-
-</div>
-
-
-     <div id="gioithieu2" class="content">
-  <h2 style="color: #FFD700;">2. Ý TƯỞNG THIẾT KẾ BÀI DỰ THI</h2>
-
-  <div id="yTuongText">
-    <p>1. Quá trình hình thành và phát triển ý tưởng bài dự thi </p>
-</p>Ngay sau khi nhận được thông tin phát động cuộc thi tìm hiểu Luật Dữ liệu trong Công an nhân dân, nhóm tác giả đã nhanh chóng bắt tay vào việc nghiên cứu kỹ lưỡng các văn bản liên quan, bao gồm: Thể lệ cuộc thi, Quy chế chấm điểm, các văn bản chỉ đạo của Bộ Công an, đặc biệt là Luật Dữ liệu năm 2024 – đạo luật đầu tiên của Việt Nam quy định cụ thể về quản lý, khai thác, bảo vệ và sử dụng dữ liệu số trong tiến trình chuyển đổi số quốc gia. Nhận thức rõ ý nghĩa to lớn của đạo luật này, nhóm xác định rõ định hướng bài dự thi cần vừa phản ánh được tinh thần cốt lõi của Luật Dữ liệu, vừa đáp ứng yêu cầu sáng tạo, hiện đại và có khả năng lan tỏa sâu rộng.
-Trên cơ sở đó, nhóm tác giả đã tổ chức nhiều phiên thảo luận chuyên đề, huy động sự tham gia tích cực của các thành viên để cùng xây dựng ý tưởng. Từ việc phân tích thực trạng công tác tuyên truyền pháp luật, đặc biệt là trong bối cảnh chuyển đổi số hiện nay, nhóm nhận thấy nhu cầu tiếp cận thông tin pháp luật theo phương thức mới – sinh động, trực quan, có tính tương tác cao – là hết sức cần thiết. Những buổi trao đổi đã tập trung làm rõ các thách thức và yêu cầu mới đặt ra cho công tác phổ biến giáo dục pháp luật trong và ngoài lực lượng CAND, từ đó xác định hướng tiếp cận: tạo lập một sản phẩm tích hợp giữa học thuật – công nghệ – truyền thông hiện đại.
-Với quan điểm đó, nhóm tác giả đã xây dựng bài dự thi trên nền tảng ba trụ cột chính: 
-(1) Tính chính xác, khoa học và đúng định hướng chính trị, đảm bảo toàn bộ nội dung tuân thủ theo quy định pháp luật hiện hành, không sai lệch về mặt quan điểm, tư tưởng của Đảng và Nhà nước; 
-(2) Tính sáng tạo trong hình thức thể hiện và ứng dụng công nghệ thông tin, thể hiện qua việc phát triển phần mềm trình chiếu tương tác, tích hợp cùng một trang web hỗ trợ truy cập online trên điện thoại thông minh, mang đến trải nghiệm hiện đại, thuận tiện cho người dùng; 
-(3) Tính thực tiễn và khả năng lan tỏa cao, thể hiện ở việc nội dung bài dự thi dễ dàng được ứng dụng vào thực tế học tập, công tác tuyên truyền, đào tạo trong và ngoài lực lượng CAND.
-Ý tưởng về việc chia bài dự thi thành 5 quyển, mỗi quyển tương ứng với một chủ đề cụ thể, được hình thành dựa trên mục tiêu giúp người xem dễ dàng tiếp cận, nghiên cứu, đồng thời khẳng định tính hệ thống, toàn diện của bài dự thi. Bên cạnh đó, việc thiết kế hộp đựng bài dự thi mang tính thẩm mỹ cao, kết hợp với phần phụ lục gồm hình ảnh, infographic tuyên truyền đã góp phần nâng cao tính trực quan, sinh động, thể hiện sự đầu tư nghiêm túc và tâm huyết của nhóm tác giả đối với cuộc thi lần này.</p>
-</div>
-
- 
-  <button onclick="docNoiDung('yTuongText')" style="margin-top: 10px; background-color: #FFD700; color: black; border: none; border-radius: 6px; padding: 8px 16px; cursor: pointer;">
-  🔊 Đọc nội dung ý tưởng thiết kế bài dự thi
-</button>
-
-
-
-
-</div>
-
-
-      <div id="gioithieu3" class="content">
-	<div id="mucdichText">
-        </p>2. Mục đích tham gia cuộc thi </p>
-</p>Cuộc thi tìm hiểu về Luật Dữ liệu trong Công an nhân dân được tổ chức trong bối cảnh đất nước đang đẩy mạnh quá trình chuyển đổi số toàn diện trên tất cả các lĩnh vực, từ quản lý nhà nước, phát triển kinh tế - xã hội đến bảo đảm quốc phòng, an ninh. Trước yêu cầu cấp thiết đó, việc nâng cao nhận thức, hiểu biết pháp luật và khả năng vận dụng công nghệ thông tin vào công tác chuyên môn đang trở thành đòi hỏi bắt buộc đối với mỗi cán bộ, chiến sĩ, đặc biệt là thế hệ học viên, sỹ quan trẻ trong lực lượng Công an nhân dân. Với tinh thần trách nhiệm, nhiệt huyết tuổi trẻ và ý thức học tập nghiêm túc, nhóm tác giả tham gia cuộc thi với một số mục đích cơ bản sau:
-Thứ nhất, thông qua việc nghiên cứu, xây dựng và triển khai bài dự thi, nhóm tác giả mong muốn đóng góp thiết thực vào việc nâng cao nhận thức pháp lý và năng lực ứng dụng công nghệ thông tin trong chuyển đổi số đối với cán bộ, học viên trong các cơ sở đào tạo công an nhân dân. Bài dự thi là một cơ hội để nhóm thành viên được đào sâu tìm hiểu về nội dung, ý nghĩa, vai trò và phạm vi tác động của Luật Dữ liệu, từ đó tiếp cận hệ thống pháp luật mới với tinh thần cầu thị, chủ động và sáng tạo.
-Thứ hai, việc tham gia cuộc thi còn thể hiện tinh thần trách nhiệm chính trị, sự chủ động và năng động của học viên CAND trong việc hiện thực hóa các quy định của Đảng, Nhà nước và Bộ Công an về tăng cường ứng dụng khoa học công nghệ trong công tác công an. Nhóm tác giả xem việc tham gia cuộc thi không chỉ là hoạt động ngoại khóa đơn thuần, mà là một phần quan trọng trong nhiệm vụ học tập, rèn luyện, góp phần từng bước hiện thực hóa Chiến lược chuyển đổi số trong Công an nhân dân định hướng đến năm 2030.
-Thứ ba, nhóm tác giả mong muốn thông qua sản phẩm dự thi – phần mềm trình chiếu tương tác – có thể đề xuất một mô hình, một công cụ mới cho công tác tuyên truyền, giáo dục pháp luật trong và ngoài ngành công an nhân dân. Phần mềm không chỉ giúp nâng cao hiệu quả truyền tải nội dung pháp luật, mà còn mang đến trải nghiệm học tập sinh động, trực quan, phù hợp với thói quen tiếp cận thông tin của giới trẻ trong thời đại số.
-Thứ tư, nhóm hy vọng sản phẩm của mình có thể lan tỏa những giá trị tích cực, truyền cảm hứng về tinh thần thượng tôn pháp luật, khơi dậy ý thức trách nhiệm công dân số trong mỗi cán bộ, học viên và người dân. Đồng thời, nhóm cũng muốn đóng góp tiếng nói nhỏ bé của mình vào công cuộc xây dựng môi trường dữ liệu quốc gia an toàn, minh bạch, nhân văn – một trong những trụ cột quan trọng của chuyển đổi số bền vững .</p>
-</div>
-
- <div id="thongdiepText">
-</p>3. Thông điệp lan tỏa qua bài dự thi</p>
-</p>Thông qua bài dự thi, nhóm tác giả mong muốn truyền tải một thông điệp mang tính định hướng chiến lược, thể hiện rõ vai trò của pháp luật và lực lượng Công an nhân dân trong bối cảnh xây dựng Nhà nước số:
- 	“Luật Dữ liệu – Nền tảng pháp lý cho chuyển đổi số quốc gia: cán bộ, chiến sĩ Công an nhân dân – Lực lượng tiên phong thực thi và bảo vệ không gian dữ liệu trong kỷ nguyên mới.”
-Thông điệp này không chỉ là khẩu hiệu xuyên suốt mà còn là kim chỉ nam định hướng toàn bộ nội dung và hình thức thể hiện của bài dự thi. Trong đó, Luật Dữ liệu được xác định là cơ sở pháp lý quan trọng, đóng vai trò trụ cột trong việc điều chỉnh các hoạt động thu thập, quản lý, chia sẻ và bảo vệ dữ liệu trong môi trường số. Đồng thời, lực lượng Công an nhân dân được nhấn mạnh là đội ngũ giữ vai trò nòng cốt trong việc thực thi, giám sát và đảm bảo tính minh bạch, an toàn của hệ thống dữ liệu quốc gia.
-Thông qua cấu trúc bài dự thi chặt chẽ, phần mềm trình chiếu sinh động, hình ảnh trực quan và các thông tin pháp lý rõ ràng, nhóm tác giả mong muốn góp phần khơi dậy tinh thần trách nhiệm, nâng cao ý thức tuân thủ pháp luật của mỗi cán bộ, chiến sĩ, học viên Công an nhân dân. Qua đó, bài dự thi góp phần lan tỏa tinh thần thượng tôn pháp luật, thúc đẩy hành động cụ thể nhằm xây dựng môi trường dữ liệu an toàn, hiệu quả và nhân văn, hướng tới một xã hội số phát triển bền vững .</p>
-</div>
-
- <div id="dinhhuongText">
-	</p>4. Định hướng phát triển sau cuộc thi</p>
-</p>Sau khi kết thúc cuộc thi, nhóm tác giả không chỉ dừng lại ở việc hoàn thiện một bài dự thi có chất lượng cao mà còn có định hướng tiếp tục phát triển nội dung và công năng của phần mềm trình chiếu, nhằm mở rộng phạm vi ứng dụng vào thực tiễn giảng dạy, tuyên truyền pháp luật trong lực lượng Công an nhân dân. Trước hết, nhóm dự kiến xây dựng phần mềm thành một “bộ tài liệu số hóa đa phương tiện”, có khả năng tích hợp thêm chức năng tìm kiếm trực tuyến nhiều nội dung pháp lý quan trọng khác như: Luật An toàn thông tin mạng, Luật An ninh mạng, Luật Sở hữu trí tuệ (sửa đổi), các văn bản dưới luật, hướng dẫn thi hành, cũng như các quy định đặc thù liên quan đến công tác chuyển đổi số trong ngành Công an. Việc tích hợp này không chỉ giúp làm phong phú nội dung mà còn góp phần từng bước hình thành một kho tư liệu điện tử có hệ thống, phục vụ công tác giảng dạy, học tập và bồi dưỡng kiến thức pháp luật cho cán bộ, chiến sĩ, học viên tại các cơ sở đào tạo công an nhân dân.
-Song song với việc mở rộng nội dung, nhóm tác giả cũng đề xuất nâng cấp giao diện người dùng của phần mềm theo hướng thân thiện, hiện đại, tối ưu trải nghiệm tiếp cận thông tin. Một trong những điểm nhấn là chức năng trình chiếu qua mã Quy rờ, cho phép người dùng truy cập nhanh vào nội dung bài dự thi chỉ bằng thiết bị di động, phù hợp với xu thế học tập và tuyên truyền số hóa hiện nay. Tính năng này đặc biệt hữu ích khi áp dụng trong các buổi sinh hoạt chính trị, tọa đàm chuyên đề, cuộc thi pháp luật, ngoại khóa pháp luật tại các đơn vị trong và ngoài ngành.
-Với những định hướng trên, nhóm tác giả kỳ vọng phần mềm không chỉ dừng lại ở khuôn khổ cuộc thi mà còn trở thành công cụ hỗ trợ hiệu quả trong công tác phổ biến, giáo dục pháp luật, góp phần nâng cao nhận thức pháp lý và thúc đẩy xây dựng lực lượng Công an nhân dân chính quy, tinh nhuệ, hiện đại trong thời đại chuyển đổi số.</p>
-</div>
- </p>2. Mục đích tham gia cuộc thi </p>
-<button onclick="docNoiDung('mucdichText')" style="margin-top: 10px; background-color: #FFD700; color: black; border: none; border-radius: 6px; padding: 8px 16px; cursor: pointer;">
-  🔊 Đọc nội dung mục đích tham gia cuộc thi
-</button>
-</p>3. Thông điệp lan tỏa qua bài dự thi</p>
-
-<button onclick="docNoiDung('thongdiepText')" style="margin-top: 10px; background-color: #FFD700; color: black; border: none; border-radius: 6px; padding: 8px 16px; cursor: pointer;">
-  🔊 Đọc nội dung thông điệp thông qua cuộc thi
-</button>
-</p>4. Định hướng phát triển sau cuộc thi</p>
-<button onclick="docNoiDung('dinhhuongText')" style="margin-top: 10px; background-color: #FFD700; color: black; border: none; border-radius: 6px; padding: 8px 16px; cursor: pointer;">
-  🔊 Đọc nội dung định hướng sau cuộc thi
-</button>
- </div>
-
-
-       <script>
-    function showContent(id) {
-      document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-      const target = document.getElementById(id);
-      if (target) target.classList.add('active');
-    }
-  </script>
 
 <script>
-let speechUtterance;
-let isSpeaking = false;
-
-function docNoiDung(elementId) {
-  const text = document.getElementById(elementId).innerText.trim();
-
-  if (!isSpeaking) {
-    speechUtterance = new SpeechSynthesisUtterance(text);
-    speechUtterance.lang = 'vi-VN';
-
-    const voices = window.speechSynthesis.getVoices();
-    const vietnameseVoice = voices.find(v => v.lang === 'vi-VN');
-    if (vietnameseVoice) {
-      speechUtterance.voice = vietnameseVoice;
+  function toggleMusic() {
+    var music = document.getElementById('bg-music');
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
     }
-
-    window.speechSynthesis.speak(speechUtterance);
-    isSpeaking = true;
-
-    speechUtterance.onend = () => {
-      isSpeaking = false;
-    };
-  } else {
-    window.speechSynthesis.cancel();
-    isSpeaking = false;
   }
-}
-
-// Khởi tạo voice khi load
-window.speechSynthesis.onvoiceschanged = () => {};
 </script>
-
 
 </body>
 </html>
-
-
