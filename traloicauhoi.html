@@ -42,17 +42,19 @@
 }
 
 /* Khung chứa chữ chạy */
+/* Khung chứa chữ chạy */
 .marquee-container {
   width: 100%;
-  overflow: hidden; /* Ngăn không cho nội dung tràn ra */
+  overflow: hidden; /* Ẩn phần chữ bị tràn */
   background: rgba(0,0,0,0.6);
   padding: 10px 0;
+  box-sizing: border-box;
 }
 
 /* Chữ chạy bên trong */
 .marquee-text {
   display: inline-block;
-  padding-left: 100%; /* Bắt đầu chạy từ ngoài khung bên phải */
+  padding-left: 100%; /* Bắt đầu từ ngoài khung */
   white-space: nowrap;
   animation: marquee 15s linear infinite;
   font-size: 1.1em;
@@ -172,9 +174,13 @@ iframe {
 
   <div class="header-box">
   <h1>📌 TRẢ LỜI CÂU HỎI BÀI DỰ THI</h1>
+<div class="marquee-container">
   <div class="marquee-text">
-    📢 Bạn đang theo dõi phần mềm trình chiếu tương tác Bài dự thi "Tìm hiểu Luật dữ liệu trong Công an nhân dân" - Vui lòng nhấp chọn vào nội dung cần xem! 📢
+     📢 Bạn đang theo dõi phần mềm trình chiếu tương tác Bài dự thi "Tìm hiểu Luật dữ liệu trong Công an nhân dân" - Vui lòng nhấp chọn vào nội dung cần xem! 📢
   </div>
+</div>
+
+    
 </div>
 
   <div class="container">
@@ -219,6 +225,7 @@ iframe {
 
 </body>
 </html>
+
 
 
 
