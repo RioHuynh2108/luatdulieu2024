@@ -141,6 +141,106 @@
     .content.active {
       display: block;
     }
+	  /* Reset để tránh tràn lề trên mobile */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Chỉnh giao diện mobile cho toàn bộ web */
+@media screen and (max-width: 768px) {
+  
+  /* Tiêu đề */
+  .animated-title {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .animated-title h1 {
+    font-size: 1.2em;
+    line-height: 1.3em;
+  }
+
+  .animated-title h2 {
+    font-size: 1em;
+    line-height: 1.2em;
+  }
+
+  .animated-title img {
+    max-width: 80px;
+    height: auto;
+  }
+
+  /* QR Section */
+  .qr-section {
+    transform: none; /* Bỏ dịch sang phải */
+    margin-top: 10px;
+    padding: 0 10px;
+  }
+
+  .qr-section img {
+    max-width: 150px;
+    height: auto;
+  }
+
+  .qr-section h2,
+  .qr-section h3 {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+
+  /* Box thông tin */
+  .info-box {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.95em;
+    margin: 8px 0;
+  }
+
+  /* Menu */
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .menu button {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95em;
+    border-radius: 8px;
+  }
+
+  /* Chạy chữ */
+  .marquee-text {
+    font-size: 0.9em;
+    padding: 5px 0;
+  }
+}
+
+/* Dưới 480px (màn hình rất nhỏ) */
+@media screen and (max-width: 480px) {
+  .animated-title h1 {
+    font-size: 1em;
+  }
+  .animated-title h2 {
+    font-size: 0.9em;
+  }
+  .qr-section img {
+    max-width: 130px;
+  }
+  .menu button {
+    font-size: 0.9em;
+    padding: 10px;
+  }
+}
   </style>
 </head>
 <body>
@@ -306,4 +406,5 @@ window.speechSynthesis.onvoiceschanged = () => {};
 
 </body>
 </html>
+
 
