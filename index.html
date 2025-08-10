@@ -136,6 +136,26 @@
 </head>
 
 <body>
+<!-- Nhạc nền -->
+<audio id="bg-music" loop>
+  <source src="nhacnen.mp3" type="audio/mp3">
+</audio>
+
+<!-- Nút bật nhạc nền -->
+<div style="position: fixed; top: 20px; right: 20px; z-index: 10000;">
+  <button onclick="playMusic()" style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
+    🎵 Nhạc nền
+  </button>
+</div>
+
+<script>
+function playMusic() {
+  const music = document.getElementById("bg-music");
+  music.play().catch(error => {
+    console.log("Không thể phát nhạc tự động, cần thao tác của người dùng:", error);
+  });
+}
+</script>
 
   <!-- Video nền -->
   <video id="video-background" autoplay loop muted>
@@ -180,3 +200,4 @@
 
 </body>
 </html>
+
