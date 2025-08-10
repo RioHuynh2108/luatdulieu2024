@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧠 Mã QR tài liệu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    #video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 115%;
+      height: 135%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+   /* Gộp header và marquee thành một khung duy nhất */
+.header-box {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 10px auto;
+  max-width: 100%;
+}
+
+/* Tiêu đề chính */
+.header-box h1 {
+  font-size: 1.5em;
+  color: #FFD700;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Dòng chữ chạy bên trong khung */
+.marquee-text {
+  white-space: nowrap;
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+  font-size: 1.1em;
+  color: #FFD700;
+}
+
+/* Hiệu ứng chữ chạy */
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Bố cục trang gồm taskbar và nội dung chính */
+.container {
+  display: flex;
+}
+
+/* Taskbar bên trái */
+.taskbar {
+  width: 150px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Nút trong taskbar */
+.taskbar button {
+  background-color: #222;
+  color: white;
+  border: 2px solid #FFD700;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.95em;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.taskbar button:hover {
+  background-color: #FFD700;
+  color: black;
+  transform: scale(1.03);
+}
+
+/* Nội dung chính */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Menu chính giữa (nếu có) */
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 40px;
+}
+
+.menu button {
+  background-color: #333;
+  color: white;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.menu button:hover {
+  background-color: #4CAF50;
+  transform: scale(1.05);
+}
+
+/* Các khối nội dung */
+.content {
+  max-width: 900px;
+  margin: 20px auto;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+}
+
+
+ .qr-section {
+    text-align: center;
+    margin-top: 20px;
+    transform: translateX(-100px);
+  }
+  .qr-section img {
+    display: block;
+    margin: 10px auto 20px auto;
+    width: 400px;
+    height: 400px;
+  }
+  .qr-section h2,
+  .qr-section h3,
+  .qr-section h4,
+  .qr-section h5,
+  .qr-section h6 {
+    color: #FFD700;
+    margin-bottom: 15px;
+  }
+
+    .content.active {
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+ <!-- Nhạc nền ẩn -->
+  <audio id="bg-music" loop>
+    <source src="nhacnen.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Nút bật nhạc ở góc phải trên cùng -->
+  <div style="position: fixed; top: 10px; right: 20px; z-index: 10000;">
+    <button onclick="playMusic()" style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
+      🎵 Nhạc nền
+    </button>
+  </div>
+  <video id="video-background" autoplay loop muted>
+    <source src="nen7.mp4" type="video/mp4">
+  </video>
+
+  <div class="header-box">
+  <h1>📄 THUYẾT MINH BÀI DỰ THI</h1>
+  <div class="marquee-text">
+    📢 Bạn đang theo dõi phần mềm trình chiếu tương tác Bài dự thi "Tìm hiểu Luật dữ liệu trong Công an nhân dân" - Vui lòng nhấp chọn vào nội dung cần xem! 📢
+  </div>
+</div>
+
+  <div class="container">
+    <!-- Taskbar bên trái -->
+    <div class="taskbar">
+         <button onclick="window.location.href='index.html'">🏠 Trang chủ</button>
+      <button onclick="window.location.href='gioithieuchung.html'">📄 Thuyết minh bài dự thi</button>
+      <button onclick="window.location.href='traloicauhoi.html'">📌 Trả lời câu hỏi bài dự thi</button>
+      <button onclick="window.location.href='vanbanluat.html'">📚 Các văn bản Luật liên quan</button>
+      <button onclick="window.location.href='hinhanh.html'">🎥 Hình ảnh tuyên truyền</button>
+      <button onclick="window.location.href='tracnghiem.html'">🛡️ Trắc nghiệm khách quan</button>
+      <button onclick="window.location.href='maqr.html'">🧠 Mã QR tài liệu</button>
+      <button onclick="window.location.href='khuyennghi.html'">📎 Khuyến nghị</button>
+    </div>
+
+<div class="main-content">
+  <div class="qr-section">
+    <h2>MÃ QR QUYỂN 1 BÀI DỰ THI</h2>
+    <img src="QR/qrquyen1.png" alt="QR Quyển 1">
+  </div>
+
+  <div class="qr-section">
+    <h2>MÃ QR QUYỂN 2 BÀI DỰ THI</h2>
+    <img src="QR/qrquyen2.png" alt="QR Quyển 2">
+  </div>
+
+  <div class="qr-section">
+    <h2>MÃ QR QUYỂN 3 BÀI DỰ THI</h2>
+    <img src="QR/qrquyen3.png" alt="QR Quyển 3">
+  </div>
+
+  <div class="qr-section">
+    <h2>MÃ QR QUYỂN 4 BÀI DỰ THI</h2>
+    <img src="QR/qrquyen4.png" alt="QR Quyển 4">
+  </div>
+
+  <div class="qr-section">
+    <h2>MÃ QR QUYỂN 5 BÀI DỰ THI</h2>
+    <img src="QR/qrquyen5.png" alt="QR Quyển 5">
+  </div>
+</div>
+</div>
+
+
+</body>
+</html>
