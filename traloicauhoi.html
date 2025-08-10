@@ -183,71 +183,30 @@ iframe {
  <!-- Nội dung chính -->
 <div class="main-content">
   <div class="menu">
-    <button onclick="showContent('gioithieu1')"> <strong style="color: #FFD700;">Quyển 1</strong></button>
-    <button onclick="showContent('gioithieu2')"> <strong style="color: #FFD700;">Quyển 2</strong></button>
-    <button onclick="showContent('gioithieu3')"> <strong style="color: #FFD700;">Quyển 3</strong></button>
-    <button onclick="showContent('gioithieu4')"> <strong style="color: #FFD700;">Quyển 4</strong></button>
-    <button onclick="showContent('gioithieu5')"> <strong style="color: #FFD700;">Quyển 5</strong></button>
+   <!-- Nội dung chính -->
+<div class="main-content">
+  <div class="menu">
+    <button onclick="window.location.href='https://online.fliphtml5.com/jkhsr/qpfo/'">
+      <strong style="color: #FFD700;">Quyển 1</strong>
+    </button>
+    <button onclick="window.location.href='https://online.fliphtml5.com/jkhsr/dpdx/'">
+      <strong style="color: #FFD700;">Quyển 2</strong>
+    </button>
+    <button onclick="window.location.href='https://online.fliphtml5.com/jkhsr/smgn/'">
+      <strong style="color: #FFD700;">Quyển 3</strong>
+    </button>
+    <button onclick="window.location.href='https://online.fliphtml5.com/jkhsr/euge/'">
+      <strong style="color: #FFD700;">Quyển 4</strong>
+    </button>
+    <button onclick="window.location.href='https://online.fliphtml5.com/jkhsr/cwfs/'">
+      <strong style="color: #FFD700;">Quyển 5</strong>
+    </button>
   </div>
+</div>
 
- 
-<!-- Nội dung Luật Dữ liệu -->
-    <div id="gioithieu1" class="content">
-      <h2 style="color: #FFD700;">1. QUYỂN 1</h2>
-	  <button class="fullscreen-btn" onclick="openFullscreen('pdfFrame')">⛶ Xem toàn màn hình</button>
-      <iframe id="pdfFrame" src="quyenpdf/quyen1.pdf"></iframe>
-    </div>
-
-<!-- Nội dung Luật Dữ liệu -->
-    <div id="gioithieu2" class="content">
-      <h2 style="color: #FFD700;">2. QUYỂN 2</h2>
-	  <button class="fullscreen-btn" onclick="openFullscreen('pdfFrame')">⛶ Xem toàn màn hình</button>
-      <iframe id="pdfFrame" src="quyenpdf/quyen2.pdf"></iframe>
-    </div>
-
-<!-- Nội dung Luật Dữ liệu -->
-    <div id="gioithieu3" class="content">
-      <h2 style="color: #FFD700;">3. QUYỂN 3</h2>
-	  <button class="fullscreen-btn" onclick="openFullscreen('pdfFrame')">⛶ Xem toàn màn hình</button>
-      <iframe id="pdfFrame" src="quyenpdf/quyen3.pdf"></iframe>
-    </div>
-
-<!-- Nội dung Luật Dữ liệu -->
-    <div id="gioithieu4" class="content">
-      <h2 style="color: #FFD700;">4. QUYỂN 4</h2>
-	  <button class="fullscreen-btn" onclick="openFullscreen('pdfFrame')">⛶ Xem toàn màn hình</button>
-      <iframe id="pdfFrame" src="quyenpdf/quyen4.pdf"></iframe>
-    </div>
-
-<!-- Nội dung Luật Dữ liệu -->
-    <div id="gioithieu5" class="content">
-      <h2 style="color: #FFD700;">5. QUYỂN 5</h2>
-	  <button class="fullscreen-btn" onclick="openFullscreen('pdfFrame')">⛶ Xem toàn màn hình</button>
-      <iframe id="pdfFrame" src="quyenpdf/quyen5.pdf"></iframe>
-    </div>
-<script>
-  function showContent(id) {
-    const contents = document.querySelectorAll('.content');
-    contents.forEach(el => el.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-  }
-
-  function openFullscreen(iframeId) {
-    const iframe = document.getElementById(iframeId);
-    if (iframe.requestFullscreen) {
-      iframe.requestFullscreen();
-    } else if (iframe.mozRequestFullScreen) { /* Firefox */
-      iframe.mozRequestFullScreen();
-    } else if (iframe.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-      iframe.webkitRequestFullscreen();
-    } else if (iframe.msRequestFullscreen) { /* IE/Edge */
-      iframe.msRequestFullscreen();
-    }
-  }
-
-  
 </script>
 
 
 </body>
 </html>
+
