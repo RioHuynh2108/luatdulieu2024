@@ -46,6 +46,71 @@
       font-size: 1.1em;
       color: #FFD700;
     }
+/* Điều chỉnh chung cho màn hình nhỏ */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .animated-title {
+    padding: 15px 10px;
+  }
+
+  .animated-title h1 {
+    font-size: 1.1em;
+    line-height: 1.3em;
+  }
+
+  .animated-title h2 {
+    font-size: 1em;
+    line-height: 1.2em;
+  }
+
+  .animated-title img {
+    max-width: 100px;
+  }
+
+  .info-box {
+    padding: 15px;
+    margin: 10px auto;
+    font-size: 0.9em;
+  }
+
+  .info-box p {
+    margin: 6px 0;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 5px;
+    max-width: 100%;
+  }
+
+  .menu button {
+    font-size: 0.95em;
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .marquee-text {
+    font-size: 0.95em;
+  }
+}
+
+/* Điều chỉnh cho màn hình siêu nhỏ (dưới 480px) */
+@media screen and (max-width: 480px) {
+  .animated-title h1 {
+    font-size: 1em;
+  }
+  .animated-title h2 {
+    font-size: 0.9em;
+  }
+  .menu button {
+    font-size: 0.9em;
+    padding: 10px;
+  }
+}
 
     @keyframes marquee {
       0%   { transform: translateX(100%); }
@@ -274,6 +339,7 @@
 </script>
 </body>
 </html>
+
 
 
 
