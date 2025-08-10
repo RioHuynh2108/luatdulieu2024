@@ -13,22 +13,34 @@
       padding: 0;
     }
 
-.video-background {
+/* Video nền */
+#video-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
+  z-index: -1; /* đẩy video xuống dưới */
 }
 
-/* Khi màn hình nhỏ hơn 768px, chỉnh lại */
+/* Khi màn hình nhỏ hơn 768px */
 @media screen and (max-width: 768px) {
-  .video-background {
-    height: 100vh; /* vừa chiều cao màn hình */
-    object-fit: cover; /* không méo video */
+  #video-background {
+    height: 100vh;
+    object-fit: cover;
   }
+}
+
+/* Đảm bảo nội dung nổi lên */
+.header-box,
+.container,
+.main-content,
+.taskbar,
+.menu,
+.content {
+  position: relative;
+  z-index: 1;
 }
 
    /* Gộp header và marquee thành một khung duy nhất */
@@ -426,6 +438,7 @@ window.speechSynthesis.onvoiceschanged = () => {};
 
 </body>
 </html>
+
 
 
 
