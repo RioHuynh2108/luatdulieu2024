@@ -157,17 +157,18 @@ iframe {
   </style>
 </head>
 <body>
- <!-- Nhạc nền ẩn -->
-  <audio id="bg-music" loop>
-    <source src="nhacnen.mp3" type="audio/mp3">
-  </audio>
+ <!-- Nhạc nền -->
+<audio id="bg-music" loop>
+  <source src="nhacnen.mp3" type="audio/mp3">
+</audio>
 
-  <!-- Nút bật nhạc ở góc phải trên cùng -->
-  <div style="position: fixed; top: 1px; right: 20px; z-index: 10000;">
-    <button onclick="playMusic()" style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
-      🎵 Nhạc nền
-    </button>
-  </div>
+<!-- Nút bật/tắt nhạc nền -->
+<div style="position: fixed; top: 1px; right: 20px; z-index: 10000;">
+  <button id="music-btn" onclick="toggleMusic()" 
+          style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
+    🔊 Bật/Tắt nhạc
+  </button>
+</div>
   <video id="video-background" autoplay loop muted>
     <source src="videonen4.mp4" type="video/mp4">
   </video>
@@ -225,6 +226,7 @@ iframe {
 
 </body>
 </html>
+
 
 
 
