@@ -5,23 +5,31 @@
   <title>LawTech Showcase</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-   body {
-  font-family: Arial, sans-serif;
-  background: none;
-  background-size: cover;
-  color: white;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
 
+    /* Video nền toàn màn hình */
+    #video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
 
-
-  
+    /* Nội dung đè lên video */
+    .overlay-content {
+      position: relative;
+      z-index: 1;
+    }
 
     .menu {
       display: flex;
@@ -51,21 +59,6 @@
     .menu button:hover {
       background-color: #4CAF50;
       transform: scale(1.05);
-    }
-
-    .content {
-      display: none;
-      max-width: 800px;
-      margin-top: 30px;
-      padding: 20px;
-      background-color: #222;
-      border-radius: 10px;
-      width: 90%;
-      box-sizing: border-box;
-    }
-
-    .content.active {
-      display: block;
     }
 
     .animated-title {
@@ -138,69 +131,52 @@
       .animated-title img {
         width: 120px;
       }
-
-      .content {
-        width: 100%;
-        padding: 15px;
-      }
-
-      video {
-        width: 100% !important;
-        height: auto !important;
-      }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- Video nền -->
   <video id="video-background" autoplay loop muted>
     <source src="nenchinh.mp4" type="video/mp4">
   </video>
 
-  <div class="animated-title" style="background-color: rgba(0,0,0,0.6); padding: 30px 20px; margin: 30px auto; border-radius: 15px; max-width: 900px; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
-    <img src="logobca.png" alt="Logo Bộ Công an" style="height: 150px;">
-    <h1 class="glow">PHẦN MỀM TRÌNH CHIẾU TƯƠNG TÁC</h1>
-    <h1 class="glow">BÀI DỰ THI</h1>
-    <h2>"TÌM HIỂU LUẬT DỮ LIỆU TRONG CÔNG AN NHÂN DÂN"</h2>
-  </div>
-
-  <div style="margin-bottom: 20px; width: 100%; overflow: hidden; background: rgba(0,0,0,0.6); padding: 10px 0;">
-    <div class="marquee-text" style="display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; font-size: 1.1em; color: #FFD700;">
-      📢 Luật dữ liệu trong thời kỳ chuyển đổi số quốc gia - Bước đột phá trong Kỷ nguyên mới - Kỷ nguyên vươn mình của Dân tộc 📢
+  <!-- Nội dung đè lên -->
+  <div class="overlay-content">
+    <div class="animated-title" style="background-color: rgba(0,0,0,0.6); padding: 30px 20px; margin: 30px auto; border-radius: 15px; max-width: 900px; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+      <img src="logobca.png" alt="Logo Bộ Công an" style="height: 150px;">
+      <h1 class="glow">PHẦN MỀM TRÌNH CHIẾU TƯƠNG TÁC</h1>
+      <h1 class="glow">BÀI DỰ THI</h1>
+      <h2>"TÌM HIỂU LUẬT DỮ LIỆU TRONG CÔNG AN NHÂN DÂN"</h2>
     </div>
-  </div>
 
-  <div class="info-box" style="background-color: rgba(0,0,0,0.6); padding: 20px; margin: 20px auto 10px auto; border-radius: 10px; text-align: center; max-width: 1000px;">
-    <p><span style="color: #FFD700;">Nhóm Tác giả:</span> <strong style="color: #FFD700;">CHIẾN BINH VIỄN THÔNG</strong></p>
-    <p><span style="color: #FFD700;">Thành viên:</span> <strong style="color: #FFD700;">Thiếu tá Mai Hồ Trung Trinh - Thiếu úy Huỳnh Văn Tài</strong></p>
-    <p><span style="color: #FFD700;">Đơn vị:</span> <strong style="color: #FFD700;">Phòng Thông tin liên lạc miền Nam - Cục H04 - Bộ Công an</strong></p>
-  </div>
+    <!-- Dòng chữ chạy -->
+    <div style="margin-bottom: 20px; width: 100%; overflow: hidden; background: rgba(0,0,0,0.6); padding: 10px 0;">
+      <div class="marquee-text" style="display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; font-size: 1.1em; color: #FFD700;">
+        📢 Luật dữ liệu trong thời kỳ chuyển đổi số quốc gia - Bước đột phá trong Kỷ nguyên mới - Kỷ nguyên vươn mình của Dân tộc 📢
+      </div>
+    </div>
 
-  <div class="menu">
+    <!-- Thông tin nhóm -->
+    <div class="info-box" style="background-color: rgba(0,0,0,0.6); padding: 20px; margin: 20px auto 10px auto; border-radius: 10px; text-align: center; max-width: 1000px;">
+      <p><span style="color: #FFD700;">Nhóm Tác giả:</span> <strong style="color: #FFD700;">CHIẾN BINH VIỄN THÔNG</strong></p>
+      <p><span style="color: #FFD700;">Thành viên:</span> <strong style="color: #FFD700;">Thiếu tá Mai Hồ Trung Trinh - Thiếu úy Huỳnh Văn Tài</strong></p>
+      <p><span style="color: #FFD700;">Đơn vị:</span> <strong style="color: #FFD700;">Phòng Thông tin liên lạc miền Nam - Cục H04 - Bộ Công an</strong></p>
+    </div>
+
+    <!-- Menu -->
     <div class="menu">
-       <button onclick="window.location.href='index.html'">🏠 Trang chủ</button>
+      <button onclick="window.location.href='index.html'">🏠 Trang chủ</button>
       <button onclick="window.location.href='gioithieuchung.html'">📄 Thuyết minh bài dự thi</button>
       <button onclick="window.location.href='traloicauhoi.html'">📌 Trả lời câu hỏi bài dự thi</button>
       <button onclick="window.location.href='vanbanluat.html'">📚 Các văn bản Luật liên quan</button>
       <button onclick="window.location.href='hinhanh.html'">🎥 Hình ảnh tuyên truyền</button>
-      <button onclick=window.location.href='tracnghiem.html'">🛡️ Trắc nghiệm khách quan</button>
+      <button onclick="window.location.href='tracnghiem.html'">🛡️ Trắc nghiệm khách quan</button>
       <button onclick="window.location.href='maqr.html'">🧠 Mã QR tài liệu</button>
       <button onclick="window.location.href='khuyennghi.html'">📎 Khuyến nghị</button>
-
+    </div>
   </div>
-
-  <script>
-    function showContent(id) {
-      document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-  </script>
 
 </body>
 </html>
-
-
-
-
-
