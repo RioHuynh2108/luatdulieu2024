@@ -49,20 +49,30 @@
   margin-bottom: 10px;
 }
 
-/* Dòng chữ chạy bên trong khung */
+/* Khung chứa chữ chạy */
+.marquee-container {
+  width: 100%;
+  overflow: hidden; /* Ngăn không cho nội dung tràn ra */
+  background: rgba(0,0,0,0.6);
+  padding: 10px 0;
+}
+
+/* Chữ chạy bên trong */
 .marquee-text {
-  white-space: nowrap;
   display: inline-block;
+  padding-left: 100%; /* Bắt đầu chạy từ ngoài khung bên phải */
+  white-space: nowrap;
   animation: marquee 15s linear infinite;
   font-size: 1.1em;
   color: #FFD700;
 }
 
-/* Hiệu ứng chữ chạy */
+/* Animation chạy từ phải sang trái */
 @keyframes marquee {
-  0%   { transform: translateX(100%); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-100%); }
 }
+
 
 /* Bố cục trang gồm taskbar và nội dung chính */
 .container {
@@ -269,10 +279,12 @@ body {
 
   <div class="header-box">
   <h1>📄 THUYẾT MINH BÀI DỰ THI</h1>
+ <div class="marquee-container">
   <div class="marquee-text">
-    📢 Bạn đang theo dõi phần mềm trình chiếu tương tác Bài dự thi "Tìm hiểu Luật dữ liệu trong Công an nhân dân" - Vui lòng nhấp chọn vào nội dung cần xem! 📢
+    📢 Luật dữ liệu trong thời kỳ chuyển đổi số quốc gia - Bước đột phá trong Kỷ nguyên mới - Kỷ nguyên vươn mình của Dân tộc📢
   </div>
 </div>
+
 
   <div class="container">
     <!-- Taskbar bên trái -->
@@ -414,5 +426,6 @@ window.speechSynthesis.onvoiceschanged = () => {};
 
 </body>
 </html>
+
 
 
