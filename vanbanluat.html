@@ -217,12 +217,19 @@
     <source src="nhacnen.mp3" type="audio/mp3" />
   </audio>
 
-  <!-- Nút bật nhạc -->
-  <div style="position: fixed; top: 10px; right: 20px; z-index: 10000;">
-    <button onclick="playMusic()" style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
-      🎵 Nhạc nền
-    </button>
-  </div>
+ <!-- Nhạc nền -->
+<audio id="bg-music" loop>
+  <source src="nhacnen.mp3" type="audio/mp3">
+</audio>
+
+<!-- Nút bật/tắt nhạc nền -->
+<div style="position: fixed; top: 20px; right: 20px; z-index: 10000;">
+  <button id="music-btn" onclick="toggleMusic()" 
+          style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
+    🔊 Bật/Tắt nhạc nền
+  </button>
+</div>
+
 
   <!-- Video nền -->
   <video id="video-background" autoplay loop muted>
@@ -274,7 +281,7 @@
     <div id="gioithieu2" class="content">
       <h2 style="color: #FFD700;">2.LUẬT BẢO VỆ DỮ LIỆU CÁ NHÂN</h2>
 	  <button class="fullscreen-btn" onclick="openFullscreen('pdfFrame')">⛶ Xem toàn màn hình</button>
-      <iframe id="pdfFrame" src=vanbanluat/Luật-91-2025-QH15.pdf"></iframe>
+      <iframe id="pdfFrame" src=Luật-91-2025-QH15.pdf"></iframe>
     
     </div>
   
@@ -290,7 +297,7 @@
     <div id="gioithieu4" class="content">
       <h2 style="color: #FFD700;">4.LUẬT AN NINH MẠNG</h2>
 	  <button class="fullscreen-btn" onclick="openFullscreen('pdfFrame')">⛶ Xem toàn màn hình</button>
-      <iframe id="pdfFrame" src="vanbanluat/Luật-24-2018-QH14.pdf"></iframe>
+      <iframe id="pdfFrame" src="Luật-24-2018-QH14.pdf"></iframe>
     
     </div>
 
@@ -337,8 +344,20 @@
 
   
 </script>
+		<script>
+  function toggleMusic() {
+    const music = document.getElementById('bg-music');
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+</script>
+
 </body>
 </html>
+
 
 
 
