@@ -274,15 +274,19 @@ body {
   </style>
 </head>
 <body>
- <!-- Nhạc nền ẩn -->
-  <audio id="bg-music" loop>
-    <source src="nhacnen.mp3" type="audio/mp3">
-  </audio>
+ <!-- Nhạc nền -->
+<audio id="bg-music" loop>
+  <source src="nhacnen.mp3" type="audio/mp3">
+</audio>
 
-  <!-- Nút bật nhạc ở góc phải trên cùng -->
-  <div style="position: fixed; top: 10px; right: 20px; z-index: 10000;">
-    <button onclick="playMusic()" style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
-      🎵 Nhạc nền
+<!-- Nút bật/tắt nhạc nền -->
+<div style="position: fixed; top: 20px; right: 20px; z-index: 10000;">
+  <button id="music-btn" onclick="toggleMusic()" 
+          style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
+    🔊 Bật/Tắt nhạc nền
+  </button>
+</div>
+
     </button>
   </div>
   <video id="video-background" autoplay loop muted>
@@ -291,10 +295,11 @@ body {
 
   <div class="header-box">
   <h1>📄 THUYẾT MINH BÀI DỰ THI</h1>
- <div class="marquee-container">
-  <div class="marquee-text">
-    📢 Luật dữ liệu trong thời kỳ chuyển đổi số quốc gia - Bước đột phá trong Kỷ nguyên mới - Kỷ nguyên vươn mình của Dân tộc📢
-  </div>
+ <!-- Dòng chữ chạy -->
+  <div style="margin-bottom: 20px; width: 100%; overflow: hidden; background: rgba(0,0,0,0.6); padding: 10px 0;">
+    <div style="display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; font-size: 1.1em; color: #FFD700;">
+       📢 Bạn đang theo dõi phần mềm trình chiếu tương tác Bài dự thi "Tìm hiểu Luật dữ liệu trong Công an nhân dân" - Vui lòng nhấp chọn vào nội dung cần xem! 📢
+    </div>
 </div>
 
 
@@ -429,10 +434,22 @@ function docNoiDung(elementId) {
 // Khởi tạo voice khi load
 window.speechSynthesis.onvoiceschanged = () => {};
 </script>
+<script>
+  function toggleMusic() {
+    const music = document.getElementById('bg-music');
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+</script>
+
 
 
 </body>
 </html>
+
 
 
 
