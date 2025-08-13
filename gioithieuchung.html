@@ -435,13 +435,19 @@ function docNoiDung(elementId) {
 window.speechSynthesis.onvoiceschanged = () => {};
 </script>
 <script>
+  const music = document.getElementById('bg-music');
+  const musicBtn = document.getElementById('music-btn');
+  let isPlaying = false;
+
   function toggleMusic() {
-    const music = document.getElementById('bg-music');
-    if (music.paused) {
-      music.play();
-    } else {
+    if (isPlaying) {
       music.pause();
+      musicBtn.textContent = "🔇 Bật nhạc nền";
+    } else {
+      music.play();
+      musicBtn.textContent = "🔊 Tắt nhạc nền";
     }
+    isPlaying = !isPlaying;
   }
 </script>
 
@@ -449,6 +455,7 @@ window.speechSynthesis.onvoiceschanged = () => {};
 
 </body>
 </html>
+
 
 
 
