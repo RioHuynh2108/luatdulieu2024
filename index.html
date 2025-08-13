@@ -137,7 +137,22 @@
     🔊 Bật/Tắt nhạc nền
   </button>
 </div>
+<script>
+  const music = document.getElementById('bg-music');
+  const musicBtn = document.getElementById('music-btn');
+  let isPlaying = false;
 
+  function toggleMusic() {
+    if (isPlaying) {
+      music.pause();
+      musicBtn.textContent = "🔇 Bật nhạc nền";
+    } else {
+      music.play();
+      musicBtn.textContent = "🔊 Tắt nhạc nền";
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
 <!-- Video nền -->
 <video id="video-background" autoplay loop muted>
   <source src="videonen5.mp4" type="video/mp4">
@@ -192,5 +207,6 @@
 
 </body>
 </html>
+
 
 
