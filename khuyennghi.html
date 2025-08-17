@@ -213,9 +213,26 @@ iframe {
       <button onclick="window.location.href='khuyennghi.html'">📎 Khuyến nghị</button>
     </div>
 
- <h2 style="color: #FFD700;">  
-  MỘT SỐ KHUYẾN NGHỊ NÂNG CAO CÔNG TÁC TUYÊN TRUYỀN, PHỔ BIẾN VÀ ÁP DỤNG LUẬT DỮ LIỆU TRONG CÔNG AN NHÂN DÂN
-</h2>
+ <!-- Khung chứa tiêu đề + nút đọc -->
+<div style="width: 100%; background: rgba(0,0,0,0.5); 
+            padding: 15px; border-radius: 10px; 
+            display: flex; flex-direction: column; 
+            align-items: center; gap: 15px; margin-bottom: 20px;">
+
+  <!-- Tiêu đề -->
+  <h2 style="color: #FFD700; text-align: center; margin: 0;">
+    MỘT SỐ KHUYẾN NGHỊ NÂNG CAO CÔNG TÁC TUYÊN TRUYỀN, PHỔ BIẾN VÀ ÁP DỤNG LUẬT DỮ LIỆU TRONG CÔNG AN NHÂN DÂN
+  </h2>
+
+  <!-- Nút đọc nội dung -->
+  <button onclick="docNoiDung('yTuongText')" 
+          style="background-color: #FFD700; color: black; border: none; 
+                 border-radius: 5px; padding: 8px 20px; font-size: 1em; 
+                 cursor: pointer; font-weight: bold;">
+    🔊 Đọc nội dung Khuyến nghị
+  </button>
+</div>
+
 
 <!-- Nội dung ẩn -->
 <div id="yTuongText" style="display: none;">
@@ -234,17 +251,6 @@ Cuối cùng, cần tổ chức các hội thi, diễn đàn trao đổi kinh ng
 Với những khuyến nghị trên, công tác tuyên truyền, phổ biến Luật Dữ liệu trong công an nhân dân sẽ được triển khai toàn diện, sâu rộng và hiệu quả hơn, góp phần xây dựng lực lượng Công an chính quy, tinh nhuệ, hiện đại, đáp ứng yêu cầu nhiệm vụ bảo vệ an ninh, trật tự trong kỷ nguyên số.
 </div>
 
-<!-- Khung nút đọc ngay dưới tiêu đề -->
-<div style="width: 100%; display: flex; justify-content: center; 
-            background: rgba(0,0,0,0.5); padding: 12px; 
-            border-radius: 8px; margin-bottom: 20px;">
-  <button onclick="docNoiDung('yTuongText')" 
-          style="background-color: #FFD700; color: black; border: none; 
-                 border-radius: 5px; padding: 8px 20px; font-size: 1em; 
-                 cursor: pointer; font-weight: bold;">
-    🔊 Đọc nội dung Khuyến nghị
-  </button>
-</div>
 
 
 <script>
@@ -282,6 +288,7 @@ window.speechSynthesis.onvoiceschanged = () => {};
 
 </body>
 </html>
+
 
 
 
