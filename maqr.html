@@ -23,7 +23,7 @@
       z-index: -1;
     }
 
-   /* Gộp header và marquee thành một khung duy nhất */
+    /* Gộp header và marquee thành một khung duy nhất */
 .header-box {
   background-color: rgba(0, 0, 0, 0.6);
   padding: 10px 15px;
@@ -41,20 +41,33 @@
   margin-bottom: 10px;
 }
 
-/* Dòng chữ chạy bên trong khung */
+/* Khung chứa chữ chạy */
+/* Khung chứa chữ chạy */
+.marquee-container {
+  width: 100%;
+  overflow: hidden; /* Ẩn phần chữ bị tràn */
+  background: rgba(0,0,0,0.6);
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+
+/* Chữ chạy bên trong */
 .marquee-text {
-  white-space: nowrap;
   display: inline-block;
+  padding-left: 100%; /* Bắt đầu từ ngoài khung */
+  white-space: nowrap;
   animation: marquee 15s linear infinite;
   font-size: 1.1em;
   color: #FFD700;
 }
 
-/* Hiệu ứng chữ chạy */
+/* Animation chạy từ phải sang trái */
 @keyframes marquee {
-  0%   { transform: translateX(100%); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-100%); }
 }
+
+
 
 /* Bố cục trang gồm taskbar và nội dung chính */
 .container {
@@ -160,25 +173,45 @@
   </style>
 </head>
 <body>
- <!-- Nhạc nền ẩn -->
-  <audio id="bg-music" loop>
-    <source src="nhacnen.mp3" type="audio/mp3">
-  </audio>
+  <!-- Nhạc nền -->
+<audio id="bg-music" loop>
+  <source src="nhacnen.mp3" type="audio/mp3">
+</audio>
 
-  <!-- Nút bật nhạc ở góc phải trên cùng -->
-  <div style="position: fixed; top: 10px; right: 20px; z-index: 10000;">
-    <button onclick="playMusic()" style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
-      🎵 Nhạc nền
-    </button>
-  </div>
+<!-- Nút bật/tắt nhạc nền -->
+<div style="position: fixed; top: 1px; right: 20px; z-index: 10000;">
+  <button id="music-btn" onclick="toggleMusic()" 
+          style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
+    🔊 Bật/Tắt nhạc nền
+  </button>
+</div>
+
+<script>
+  const music = document.getElementById('bg-music');
+  const musicBtn = document.getElementById('music-btn');
+  let isPlaying = false;
+
+  function toggleMusic() {
+    if (isPlaying) {
+      music.pause();
+      musicBtn.textContent = "🔇 Bật nhạc nền";
+    } else {
+      music.play();
+      musicBtn.textContent = "🔊 Tắt nhạc nền";
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
+
+
   <video id="video-background" autoplay loop muted>
     <source src="videonen4.mp4" type="video/mp4">
   </video>
 
   <div class="header-box">
   <h1>🧠 Mã QR tài liệu</h1>
-  <div class="marquee-text">
-    📢 Bạn đang theo dõi phần mềm trình chiếu tương tác Bài dự thi "Tìm hiểu Luật dữ liệu trong Công an nhân dân" - Vui lòng nhấp chọn vào nội dung cần xem! 📢
+ <div class="marquee-text">
+     📢 Bạn đang theo dõi phần mềm trình chiếu tương tác Bài dự thi "Tìm hiểu Luật dữ liệu trong Công an nhân dân" - Vui lòng nhấp chọn vào nội dung cần xem! 📢
   </div>
 </div>
 
@@ -226,6 +259,7 @@
 
 </body>
 </html>
+
 
 
 
