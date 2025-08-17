@@ -12,26 +12,7 @@
       margin: 0;
       padding: 0;
     }
-    #toolbar {
-      background: #FFD700;
-      padding: 10px;
-      text-align: left;
-    }
-    #toolbar button {
-      background: #333;
-      color: #fff;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    iframe {
-      width: 100%;
-      height: calc(100vh - 50px);
-      border: none;
-    }
-
-
+   
     #video-background {
       position: fixed;
       top: 0;
@@ -249,30 +230,7 @@
   </button>
 </div>
 	
-<div id="toolbar">
-    <button onclick="goBack()">⬅ Quay lại</button>
-  </div>
-  <iframe id="pdfFrame"></iframe>
 
-  <script>
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
-
-    function goBack() {
-      // Luôn quay lại trang vanbanlutat.html
-      window.location.href = "vanbanlutat.html";
-    }
-
-    // Lấy file PDF từ query string và hiển thị
-    const file = getQueryParam("file");
-    if (file) {
-      document.getElementById("pdfFrame").src = file;
-    }
-  </script>
-
-	
 <script>
   const music = document.getElementById('bg-music');
   const musicBtn = document.getElementById('music-btn');
@@ -422,6 +380,7 @@
 
 </body>
 </html>
+
 
 
 
