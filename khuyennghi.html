@@ -12,8 +12,7 @@
       margin: 0;
       padding: 0;
     }
-
-    #video-background {
+#video-background {
       position: fixed;
       top: 0;
       left: 0;
@@ -41,20 +40,32 @@
   margin-bottom: 10px;
 }
 
-/* Dòng chữ chạy bên trong khung */
+/* Khung chứa chữ chạy */
+/* Khung chứa chữ chạy */
+.marquee-container {
+  width: 100%;
+  overflow: hidden; /* Ẩn phần chữ bị tràn */
+  background: rgba(0,0,0,0.6);
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+
+/* Chữ chạy bên trong */
 .marquee-text {
-  white-space: nowrap;
   display: inline-block;
+  padding-left: 100%; /* Bắt đầu từ ngoài khung */
+  white-space: nowrap;
   animation: marquee 15s linear infinite;
   font-size: 1.1em;
   color: #FFD700;
 }
 
-/* Hiệu ứng chữ chạy */
+/* Animation chạy từ phải sang trái */
 @keyframes marquee {
-  0%   { transform: translateX(100%); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-100%); }
 }
+
 
 /* Bố cục trang gồm taskbar và nội dung chính */
 .container {
@@ -93,7 +104,7 @@
 /* Nội dung chính */
 .main-content {
   flex: 1;
-  padding: 20px;
+  padding: 10px;
 }
 
 /* Menu chính giữa (nếu có) */
@@ -101,9 +112,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   background: rgba(0, 0, 0, 0.4);
-  padding: 40px;
+  padding: 30px;
 }
 
 .menu button {
@@ -111,7 +122,7 @@
   color: white;
   border: 2px solid #4CAF50;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 5px 30px;
   font-size: 1em;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
@@ -131,12 +142,13 @@
   border-radius: 10px;
   display: none;
 }
-#yTuongText,
-#mucdichText,
-#thongdiepText,
-#dinhhuongText {
-  display: none;
-}
+iframe {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #ccc;
+      margin-top: 40px;
+    }
+
 
     .content.active {
       display: block;
@@ -144,28 +156,50 @@
   </style>
 </head>
 <body>
- <!-- Nhạc nền ẩn -->
-  <audio id="bg-music" loop>
-    <source src="nhacnen.mp3" type="audio/mp3">
-  </audio>
 
-  <!-- Nút bật nhạc ở góc phải trên cùng -->
-  <div style="position: fixed; top: 10px; right: 20px; z-index: 10000;">
-    <button onclick="playMusic()" style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
-      🎵 Nhạc nền
-    </button>
-  </div>
+ <!-- Nhạc nền -->
+<audio id="bg-music" loop>
+  <source src="nhacnen.mp3" type="audio/mp3">
+</audio>
+
+<!-- Nút bật/tắt nhạc nền -->
+<div style="position: fixed; top: 1px; right: 20px; z-index: 10000;">
+  <button id="music-btn" onclick="toggleMusic()" 
+          style="padding: 8px 14px; font-size: 0.9em; background-color: #FFD700; color: black; border: none; border-radius: 6px; cursor: pointer;">
+    🔊 Bật/Tắt nhạc nền
+  </button>
+</div>
+
+<script>
+  const music = document.getElementById('bg-music');
+  const musicBtn = document.getElementById('music-btn');
+  let isPlaying = false;
+
+  function toggleMusic() {
+    if (isPlaying) {
+      music.pause();
+      musicBtn.textContent = "🔇 Bật nhạc nền";
+    } else {
+      music.play();
+      musicBtn.textContent = "🔊 Tắt nhạc nền";
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
+
+
  <video id="video-background" autoplay loop muted>
     <source src="videonen3.mp4" type="video/mp4">
   </video>
 
   <div class="header-box">
   <h1>📎 KHUYẾN NGHỊ</h1>
+    <div class="marquee-container">
   <div class="marquee-text">
     📢 Bạn đang theo dõi phần mềm trình chiếu tương tác Bài dự thi "Tìm hiểu Luật dữ liệu trong Công an nhân dân" - Vui lòng nhấp chọn vào nội dung cần xem! 📢
   </div>
 </div>
-
+</div>
   <div class="container">
     <!-- Taskbar bên trái -->
     <div class="taskbar">
@@ -179,8 +213,7 @@
       <button onclick="window.location.href='khuyennghi.html'">📎 Khuyến nghị</button>
     </div>
 
-  <h2 style="color: #FFD700;">  MỘT SỐ KHUYẾN NGHỊ NÂNG CAO CÔNG TÁC TUYÊN TRUYỀN, PHỔ BIẾN </p>
-VÀ ÁP DỤNG LUẬT DỮ LIỆU TRONG CÔNG AN NHÂN DÂN</h2>
+  <h2 style="color: #FFD700;">  MỘT SỐ KHUYẾN NGHỊ NÂNG CAO CÔNG TÁC TUYÊN TRUYỀN, PHỔ BIẾN VÀ ÁP DỤNG LUẬT DỮ LIỆU TRONG CÔNG AN NHÂN DÂN</h2>
 
   <div id="yTuongText">
     </p>
@@ -200,13 +233,12 @@ Với những khuyến nghị trên, công tác tuyên truyền, phổ biến Lu
 </p>
 </div>
 
- 
-  <button onclick="docNoiDung('yTuongText')" style="margin-top: 10px; background-color: #FFD700; color: black; border: none; border-radius: 3px; padding: 4px 8px; cursor: pointer;">
-  🔊 Đọc nội dung Khuyến nghị</button>
-
-
-
-
+ <div style="display: flex; justify-content: center; align-items: center; border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: #f9f9f9; gap: 10px;">
+  <button onclick="docNoiDung('yTuongText')" 
+          style="background-color: #FFD700; color: black; border: none; border-radius: 3px; padding: 6px 12px; cursor: pointer;">
+    🔊 Đọc nội dung Khuyến nghị
+  </button>
+</div>
        <script>
     function showContent(id) {
       document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
@@ -251,5 +283,6 @@ window.speechSynthesis.onvoiceschanged = () => {};
 
 </body>
 </html>
+
 
 
