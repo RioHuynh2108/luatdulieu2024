@@ -234,16 +234,18 @@ Cuối cùng, cần tổ chức các hội thi, diễn đàn trao đổi kinh ng
 Với những khuyến nghị trên, công tác tuyên truyền, phổ biến Luật Dữ liệu trong công an nhân dân sẽ được triển khai toàn diện, sâu rộng và hiệu quả hơn, góp phần xây dựng lực lượng Công an chính quy, tinh nhuệ, hiện đại, đáp ứng yêu cầu nhiệm vụ bảo vệ an ninh, trật tự trong kỷ nguyên số.
 </div>
 
-<!-- Chỉ hiện nút đọc -->
-<div style="display: flex; justify-content: center; align-items: center; 
-            border: 1px solid #ccc; padding: 10px; border-radius: 5px; 
-            background-color: #f9f9f9; gap: 10px; margin-top: 15px;">
+<!-- Khung nút đọc ngay dưới tiêu đề -->
+<div style="width: 100%; display: flex; justify-content: center; 
+            background: rgba(0,0,0,0.5); padding: 12px; 
+            border-radius: 8px; margin-bottom: 20px;">
   <button onclick="docNoiDung('yTuongText')" 
           style="background-color: #FFD700; color: black; border: none; 
-                 border-radius: 3px; padding: 6px 12px; cursor: pointer;">
+                 border-radius: 5px; padding: 8px 20px; font-size: 1em; 
+                 cursor: pointer; font-weight: bold;">
     🔊 Đọc nội dung Khuyến nghị
   </button>
 </div>
+
 
 <script>
 let speechUtterance;
@@ -280,6 +282,7 @@ window.speechSynthesis.onvoiceschanged = () => {};
 
 </body>
 </html>
+
 
 
 
