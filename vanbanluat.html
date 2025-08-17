@@ -222,6 +222,11 @@
   <source src="nhacnen.mp3" type="audio/mp3">
 </audio>
 
+ <!-- Nhạc nền -->
+<audio id="bg-music" loop>
+  <source src="nhacnen.mp3" type="audio/mp3">
+</audio>
+
 <!-- Nút bật/tắt nhạc nền -->
 <div style="position: fixed; top: 1px; right: 20px; z-index: 10000;">
   <button id="music-btn" onclick="toggleMusic()" 
@@ -229,7 +234,6 @@
     🔊 Bật/Tắt nhạc nền
   </button>
 </div>
-	
 
 <script>
   const music = document.getElementById('bg-music');
@@ -380,6 +384,7 @@
 
 </body>
 </html>
+
 
 
 
